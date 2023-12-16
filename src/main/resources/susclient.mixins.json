@@ -3,7 +3,9 @@
 	"package": "net.suspoocha.susclient.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"ExampleMixin",
+		"MinecarftClientMixin",
+		"KeybordMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
