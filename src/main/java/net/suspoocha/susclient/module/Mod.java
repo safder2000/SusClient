@@ -6,11 +6,13 @@ public class Mod {
     private String name;
     private String discription;
     private int key;
+    private  String displayName;
     private Category category;
     private boolean enabled;
 protected MinecraftClient mc = MinecraftClient.getInstance();
     public Mod(String name, String discription, Category category) {
         this.name = name;
+        this.displayName = displayName;
         this.discription = discription;
         this.category = category;
 
@@ -27,6 +29,14 @@ protected MinecraftClient mc = MinecraftClient.getInstance();
 
     public void onEnable() {
 
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public void onDisable() {

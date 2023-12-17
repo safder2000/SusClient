@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Keyboard.class)
-public class KeybordMixin {
+public class KeyboardMixin {
     @Inject(method = "onKey", at=@At("HEAD"),cancellable = true)
     public void onKey(long window, int key, int scancode, int action, int modifiers, CallbackInfo ci){
         SusClient.INSTANCE.onKeyPress(key, action);

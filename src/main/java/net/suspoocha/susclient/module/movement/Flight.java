@@ -13,14 +13,14 @@ public class Flight extends Mod {
     @Override
     public void onTick() {
         mc.player.getAbilities().allowFlying = true;
-    SusClient.logger.info("____________Flight enabled____________");
+//    SusClient.logger.info("____________Flight enabled____________");
 
         super.onTick();
     }
     @Override
     public void onDisable() {
         mc.player.getAbilities().allowFlying = false;
-        SusClient.logger.info("____________Flight enabled____________");
+
         super.onDisable();
     }
 }
