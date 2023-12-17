@@ -12,7 +12,7 @@ public class Mod {
 protected MinecraftClient mc = MinecraftClient.getInstance();
     public Mod(String name, String discription, Category category) {
         this.name = name;
-        this.displayName = displayName;
+        this.displayName = name;
         this.discription = discription;
         this.category = category;
 
