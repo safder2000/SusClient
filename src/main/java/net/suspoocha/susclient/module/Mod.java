@@ -1,21 +1,41 @@
 package net.suspoocha.susclient.module;
 
 import net.minecraft.client.MinecraftClient;
+import net.suspoocha.susclient.module.settings.Setting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mod {
     private String name;
     private String discription;
     private int key;
-    private  String displayName;
+    private String displayName;
     private Category category;
     private boolean enabled;
-protected MinecraftClient mc = MinecraftClient.getInstance();
+    private List<Setting> settings = new ArrayList<>();
+    protected MinecraftClient mc = MinecraftClient.getInstance();
+
     public Mod(String name, String discription, Category category) {
         this.name = name;
         this.displayName = name;
         this.discription = discription;
         this.category = category;
 
+    }
+
+    public List<Setting> getSettings() {
+        return settings;
+    }
+
+    public void addSetting(Setting setting) {
+        settings.add(setting);
+    }
+
+    public void addSettings(Setting... settings) {
+        for (Setting setting : settings) {
+            addSetting(setting);
+        }
     }
 
     public void toggle() {
@@ -42,7 +62,8 @@ protected MinecraftClient mc = MinecraftClient.getInstance();
     public void onDisable() {
 
     }
-    public  void onTick(){
+
+    public void onTick() {
 
     }
 
@@ -89,10 +110,11 @@ protected MinecraftClient mc = MinecraftClient.getInstance();
 
 
     public enum Category {
-        COMBACT("Combact"), MOVEMENT("Movement"), RENDER("Render")  , EXPLOIT("Exploit"), WORLD("World");
+        COMBACT("Combact"), MOVEMENT("Movement"), RENDER("Render"), EXPLOIT("Exploit"), WORLD("World");
 
-        public  String name;
-        private  Category (String name){
+        public String name;
+
+        private Category(String name) {
             this.name = name;
         }
     }

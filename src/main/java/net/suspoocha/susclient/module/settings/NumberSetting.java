@@ -1,5 +1,7 @@
 package net.suspoocha.susclient.module.settings;
 
+import net.suspoocha.susclient.SusClient;
+
 public class NumberSetting extends Setting{
 
     private  double min,max,increment;
@@ -12,8 +14,8 @@ public class NumberSetting extends Setting{
         this.increment  =increment;
     }
     public  static  double clamp(double value ,double min , double max){
-        value = Math.max(min,max);
-        value = Math.min(min,max);
+        value = Math.max(min,value);
+        value = Math.min(max,value);
         return  value;
     }
 
@@ -23,16 +25,21 @@ public class NumberSetting extends Setting{
     public float getValueFloat(){
         return  (float)value;
     }
-    public int fetValueInt(){
+    public int getValueInt(){
         return (int)value;
     }
     public double getIncrement() {
         return increment;
     }
+
     public void setValue(double value) {
+        SusClient.logger.info("value send  to setNum : " +value+ "min :" +this.min +", max :"+this.max);
         value = clamp(value,this.min,this.max);
+        SusClient.logger.info("value after clamp : " +value);
         value = Math.round(value *(1.0/this.increment))/(1.0/this.increment);
+        SusClient.logger.info("value after round : " +value);
         this.value = value;
+        SusClient.logger.info("value set to  = " +this.value);
     }
     public void increment(boolean positive){
         if(positive)setValue(getValue()+getIncrement());

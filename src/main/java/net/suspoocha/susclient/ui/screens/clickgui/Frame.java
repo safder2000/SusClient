@@ -6,6 +6,8 @@ import net.minecraft.world.gen.YOffset;
 import net.suspoocha.susclient.module.Mod;
 import net.suspoocha.susclient.module.Mod.Category;
 import net.suspoocha.susclient.module.ModuleManager;
+import net.suspoocha.susclient.ui.screens.clickgui.setting.ColorPallet;
+import net.suspoocha.susclient.ui.screens.clickgui.setting.Component;
 
 
 import java.awt.*;
@@ -36,10 +38,11 @@ public class Frame {
         }
 
     }
-
+    ColorPallet colorPallet = new ColorPallet();
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         int offset =  ((height/2)-mc.textRenderer.fontHeight/2);
-        context.fill(x, y, x + width, y + height, Color.red.getRGB());
+        //Catagory
+        context.fill(x, y, x + width, y + height, colorPallet.guiTitleBackgroud);
         context.drawTextWithShadow(mc.textRenderer, category.name, x  + offset, y + ((height/2)-mc.textRenderer.fontHeight/2), Color.white.getRGB());
         context.drawTextWithShadow(mc.textRenderer, extended?"-":"+", x+width - offset-mc.textRenderer.getWidth("+"), y + ((height/2)-mc.textRenderer.fontHeight/2), Color.white.getRGB());
         if (extended) {
@@ -76,6 +79,9 @@ public class Frame {
         if (button == 0 && dragging == true) {
             dragging = false;
         }
+        for (ModuleButton mb :buttons){
+            mb.mouseReleased(mouseX,mouseY,button);
+        }
     }
 
     public boolean isHovered(double mouseX, double mouseY) {
@@ -87,6 +93,19 @@ public class Frame {
         if (dragging) {
             x = (int) (mouseX - dragX);
             y = (int) (mouseY - dragY);
+        }
+    }
+
+    public void updateButton() {
+        int offset = height;
+        for (ModuleButton button : buttons){
+            button.offset = offset;
+            offset +=height;
+            if(button.extended ){
+                for (Component component :button.components){
+                    if(component.setting.isVisible())offset +=height;
+                }
+            }
         }
     }
 }
