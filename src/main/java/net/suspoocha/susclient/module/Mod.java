@@ -89,6 +89,11 @@ protected MinecraftClient mc = MinecraftClient.getInstance();
 
 
     public enum Category {
-        COMBACT, MOVEMENT, RENDER, EXPLOIT, WORLD
+        COMBACT("Combact"), MOVEMENT("Movement"), RENDER("Render")  , EXPLOIT("Exploit"), WORLD("World");
+
+        public  String name;
+        private  Category (String name){
+            this.name = name;
+        }
     }
 }

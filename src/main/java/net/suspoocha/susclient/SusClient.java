@@ -6,6 +6,7 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.suspoocha.susclient.module.Mod;
 import net.suspoocha.susclient.module.ModuleManager;
+import net.suspoocha.susclient.ui.screens.clickgui.ClickGUI;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,7 @@ public class SusClient implements ModInitializer {
             for (Mod module : ModuleManager.INSTANCE.getModules()) {
                 if (key == module.getKey()) module.toggle();
             }
+            if(key== GLFW.GLFW_KEY_RIGHT_SHIFT)mc.setScreen(ClickGUI.INSTANCE);
         }
 
     }
